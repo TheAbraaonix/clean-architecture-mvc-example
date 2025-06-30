@@ -16,12 +16,13 @@ namespace CleanArchMvc.Application.Products.Handlers
         {
             _productRepository = productRepository;
         }
-        
+
         public async Task<Product> Handle(ProductUpdateCommand request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetByIdAsync(request.Id);
 
-            if (product == null) {
+            if (product == null)
+            {
                 throw new ApplicationException($"Error updating entity with id {request.Id}");
             }
             else
@@ -36,4 +37,5 @@ namespace CleanArchMvc.Application.Products.Handlers
                 return await _productRepository.UpdateAsync(product);
             }
         }
+    }
 }
